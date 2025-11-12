@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vagas - Jovem Aprendiz (Jequitinhonha/MG)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <div class="title-block">
+        <h1>Vagas: Jovem Aprendiz</h1>
+        <p class="sub">Jequitinhonha — MG</p>
+      </div>
+      <div class="controls">
+        <div class="control">
+          <label>Filtro</label>
+          <select id="filter">
+            <option value="day">Hoje</option>
+            <option value="week">Últimos 7 dias</option>
+            <option value="month">Últimos 30 dias</option>
+            <option value="all" selected>Todos</option>
+          </select>
+        </div>
+        <div class="control">
+          <label>Ordenar</label>
+          <select id="order">
+            <option value="desc" selected>Mais recentes</option>
+            <option value="asc">Mais antigos</option>
+          </select>
+        </div>
+        <div class="control">
+          <label>Fonte JSON</label>
+          <input id="remoteUrl" type="url" placeholder="URL RAW (opcional)"/>
+        </div>
+        <div class="control actions">
+          <button id="refreshBtn">Atualizar</button>
+          <button id="autoToggle">Auto: 60min</button>
+        </div>
+      </div>
+    </header>
+
+    <section id="summary" class="summary">
+      <div>Última coleta: <span id="lastCollected">—</span></div>
+      <div>Total de vagas: <span id="totalCount">0</span></div>
+    </section>
+
+    <section id="list" class="list"></section>
+
+    <footer class="footer">
+      <small>Este site lê <code>vagas.json</code> (remoto ou local). Funciona offline com o JSON salvo.</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

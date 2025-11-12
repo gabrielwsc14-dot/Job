@@ -1,0 +1,13 @@
+{
+  "cidade": "Jequitinhonha",
+  "uf": "MG",
+  "keywords": ["jovem aprendiz","menor aprendiz","aprendiz"],
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) VagasPCBot/1.0",
+  "check_delay_between_sites_seconds": 1,
+  "git_push": {
+    "enabled": false,
+    "repo_path": "C:/caminho/para/seu/repo",
+    "commit_message": "Atualiza vagas.json (automático)"
+  },
+  "max_results_per_site": 50
+}
