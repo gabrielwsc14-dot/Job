@@ -5,7 +5,7 @@ cd /d "C:\Job"
 git pull
 
 :: Inicia o bot (sem travar o .bat)
-start /b "" python bot_vagas_pc.py
+start /b "" python vaga_bot_pc.py
 
 :: Aguarda um tempo pro bot fazer a busca (opcional)
 timeout /t 30 >nul
