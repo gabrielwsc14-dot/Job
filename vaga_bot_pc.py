@@ -37,7 +37,7 @@ def load_json(path):
 cfg = load_json(CONFIG_PATH)
 cfg2 = load_json(CONFIG2_PATH)
 
-CIDADE = cfg.get("cidade", "Jequitinhonha", "Belo Horizonte")
+CIDADE = cfg.get("cidade", "Jequitinhonha")
 UF = cfg.get("uf", "MG")
 KEYWORDS = [k.lower() for k in cfg.get("keywords", ["jovem aprendiz"])]
 HEADERS = {"User-Agent": cfg.get("user_agent", "VagasPCBot/1.0")}
