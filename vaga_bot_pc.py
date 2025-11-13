@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-# vaga_bot_pc.py
-# Buscador de vagas (PC) — gera vagas.json compatível com o site (sem Telegram).
-# Compatível Windows 10+, Python 3.8+
+# bot_vagas.py — versão ultra-robusta
+# - 7 sites confiáveis
+# - filtro estrito JEQUITINHONHA/MG
+# - salvamento seguro em ./site/vagas.json
+# - envio ao Telegram apenas para vagas novas
+# - anticorrupt, anti-duplicação
+# - pronto p/ monitor_bot.py
 
 import requests
 from bs4 import BeautifulSoup
@@ -9,79 +13,56 @@ import time
 import json
 import os
 from urllib.parse import urljoin, quote_plus
-from datetime import datetime
-import subprocess
-import sys
-import traceback
-import shutil
+    
+# ===================== CONFIG =====================
+TOKEN = ""  # <-- COLE SEU TOKEN AQUI
+CHAT_ID = ""  # <-- COLE SEU CHAT_ID AQUI
 
-# Paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(BASE_DIR, "config.json")
-CONFIG2_PATH = os.path.join(BASE_DIR, "config2.json")  # monitor/logs
+CHECK_INTERVAL_SECONDS = 3 * 60 * 60   # 3 horas
+SEEN_FILE = "seen_links.json"
+VAGAS_JSON = "./site/vagas.json"
 
-# Agora o JSON principal fica dentro da pasta "site"
-VAGAS_PATH = os.path.join(BASE_DIR, "site", "vagas.json")
-SITE_VAGAS_PATH = os.path.join(BASE_DIR, "site", "vagas.json")
+CIDADE = "Jequitinhonha"
+UF = "MG"
 
-# ---------- Config ----------
-def load_json(path):
-    if not os.path.exists(path):
-        return {}
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
+KEYWORDS = ["jovem aprendiz", "menor aprendiz", "aprendiz"]
 
-cfg = load_json(CONFIG_PATH)
-cfg2 = load_json(CONFIG2_PATH)
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+)
 
-CIDADE = cfg.get("cidade", "Jequitinhonha")
-UF = cfg.get("uf", "MG")
-KEYWORDS = [k.lower() for k in cfg.get("keywords", ["jovem aprendiz"])]
-HEADERS = {"User-Agent": cfg.get("user_agent", "VagasPCBot/1.0")}
-DELAY_BETWEEN = cfg.get("check_delay_between_sites_seconds", 1)
-MAX_RESULTS_PER_SITE = cfg.get("max_results_per_site", 50)
-DISCORD_WEBHOOK = cfg2.get("discord_webhook", "")
+HEADERS = {"User-Agent": USER_AGENT}
 
-GIT_PUSH_CFG = cfg.get("git_push", {})
+# ===================== UTILIDADES =====================
 
-# ---------- Utils ----------
-def log(msg):
-    print(msg)
-    if DISCORD_WEBHOOK:
+def load_seen():
+    if os.path.exists(SEEN_FILE):
         try:
-            requests.post(DISCORD_WEBHOOK, json={"content": msg}, timeout=10)
-        except Exception:
-            pass
+            with open(SEEN_FILE, "r", encoding="utf-8") as f:
+                return set(json.load(f))
+        except:
+            return set()
+    return set()
 
-def now_iso():
-    return datetime.utcnow().isoformat() + "Z"
+def save_seen(seen):
+    with open(SEEN_FILE, "w", encoding="utf-8") as f:
+        json.dump(list(seen), f, ensure_ascii=False, indent=2)
 
-def read_existing():
-    if not os.path.exists(VAGAS_PATH):
-        return []
+def send_telegram(text):
+    if not TOKEN or not CHAT_ID:
+        print("TOKEN/CHAT_ID não definidos.")
+        return
     try:
-        with open(VAGAS_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
+        requests.post(
+            f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+            data={"chat_id": CHAT_ID, "text": text},
+            timeout=12
+        )
     except Exception as e:
-        print("Falha ao ler vagas.json:", e)
-        return []
-
-def write_vagas(list_of_vagas):
-    # salva vagas.json principal
-    with open(VAGAS_PATH, "w", encoding="utf-8") as f:
-        json.dump(list_of_vagas, f, ensure_ascii=False, indent=2)
-    # copia também para o site
-    try:
-        shutil.copyfile(VAGAS_PATH, SITE_VAGAS_PATH)
-    except Exception as e:
-        print("Erro ao copiar vagas.json para site:", e)
+        print("Erro enviando mensagem:", e)
 
 def normalize_link(base, href):
-    if not href:
-        return ""
     if href.startswith("http"):
         return href
     return urljoin(base, href)
@@ -92,197 +73,224 @@ def looks_like_job_title(text):
     t = text.lower()
     return any(k in t for k in KEYWORDS)
 
-# ---------- Parsers ----------
+# ===================== FILTRO JEQUITINHONHA =====================
+
+def filtrar_jequitinhonha(v):
+    titulo = v["titulo"].lower()
+    link = v["link"].lower()
+
+    # req.1 — tem que conter jequitinhonha em título ou link
+    if "jequitinhonha" not in titulo and "jequitinhonha" not in link:
+        return False
+
+    # req.2 — excluir cidades próximas para evitar vagas erradas
+    cidades_proibidas = [
+        "itaobim", "almenara", "virgem da lapa",
+        "pedra azul", "berilo", "salinas", "araçuaí",
+        "capelinha"
+    ]
+    for c in cidades_proibidas:
+        if c in titulo or c in link:
+            return False
+
+    # req.3 — deve ser de jovem aprendiz
+    if not any(k in titulo for k in KEYWORDS):
+        return False
+
+    return True
+
+# ===================== PARSERS DOS 7 SITES =====================
+
 def buscar_trabalhabrasil():
     base = "https://www.trabalhabrasil.com.br"
-    url = f"{base}/vagas-empregos/em-{quote_plus(CIDADE.lower())}-{UF.lower()}/jovem-aprendiz"
+    url = f"{base}/vagas-empregos/em-jequitinhonha-mg/jovem-aprendiz"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         for a in soup.find_all("a", href=True):
-            text = a.get_text(strip=True)
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in (text+href).lower():
+            if looks_like_job_title(txt):
                 link = normalize_link(base, href)
-                vagas.append({"title": text or "Vaga (sem título)", "link": link, "origin": "TrabalhaBrasil", "collected_at": now_iso()})
-                if len(vagas) >= MAX_RESULTS_PER_SITE:
-                    break
+                vagas.append({"titulo": txt or "Vaga", "link": link, "origem": "TrabalhaBrasil"})
     except Exception as e:
-        log(f"⚠️ Erro TrabalhaBrasil: {e}")
+        print("TrabalhaBrasil erro:", e)
     return vagas
 
 def buscar_indeed():
     base = "https://br.indeed.com"
-    q = "jovem aprendiz"
-    url = f"{base}/empregos?q={quote_plus(q)}&l={quote_plus(CIDADE + ', ' + UF)}"
+    url = f"{base}/empregos?q=jovem+aprendiz&l={quote_plus(CIDADE + ', ' + UF)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for link in soup.select("a.tapItem[href]")[:MAX_RESULTS_PER_SITE]:
+        for link in soup.select("a.tapItem[href]"):
             title_tag = link.find("h2")
-            titulo = title_tag.get_text(strip=True) if title_tag else link.get_text(strip=True)
+            if not title_tag:
+                continue
+            titulo = title_tag.get_text(strip=True)
             href = link.get("href")
-            if titulo and (looks_like_job_title(titulo) or CIDADE.lower() in titulo.lower()):
-                vagas.append({"title": titulo, "link": normalize_link(base, href), "origin": "Indeed", "collected_at": now_iso()})
+            full = normalize_link(base, href)
+            vagas.append({"titulo": titulo, "link": full, "origem": "Indeed"})
     except Exception as e:
-        log(f"⚠️ Erro Indeed: {e}")
+        print("Indeed erro:", e)
     return vagas
 
 def buscar_infojobs():
     base = "https://www.infojobs.com.br"
-    q = "jovem aprendiz"
-    url = f"{base}/empregos.aspx?Palabra={quote_plus(q)}&Location={quote_plus(CIDADE)}"
+    url = f"{base}/empregos.aspx?Palabra=jovem+aprendiz&Location={quote_plus(CIDADE)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for a in soup.find_all("a", href=True)[:MAX_RESULTS_PER_SITE]:
-            text = a.get_text(strip=True)
+        for a in soup.find_all("a", href=True):
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in (text+href).lower():
-                vagas.append({"title": text, "link": normalize_link(base, href), "origin": "InfoJobs", "collected_at": now_iso()})
+            if looks_like_job_title(txt):
+                link = normalize_link(base, href)
+                vagas.append({"titulo": txt, "link": link, "origem": "InfoJobs"})
     except Exception as e:
-        log(f"⚠️ Erro InfoJobs: {e}")
+        print("InfoJobs erro:", e)
     return vagas
 
 def buscar_bne():
     base = "https://www.bne.com.br"
-    query = f"jovem aprendiz {CIDADE}"
-    url = f"{base}/busca?q={quote_plus(query)}"
+    url = f"{base}/busca?q=jovem+aprendiz+{quote_plus(CIDADE)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for a in soup.find_all("a", href=True)[:MAX_RESULTS_PER_SITE]:
-            text = a.get_text(strip=True)
+        for a in soup.find_all("a", href=True):
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in text.lower():
-                vagas.append({"title": text, "link": normalize_link(base, href), "origin": "BNE", "collected_at": now_iso()})
+            if looks_like_job_title(txt):
+                link = normalize_link(base, href)
+                vagas.append({"titulo": txt, "link": link, "origem": "BNE"})
     except Exception as e:
-        log(f"⚠️ Erro BNE: {e}")
+        print("BNE erro:", e)
     return vagas
 
 def buscar_empregos_com_br():
     base = "https://www.empregos.com.br"
-    query = f"jovem aprendiz {CIDADE}"
-    url = f"{base}/vagas?palavra={quote_plus(query)}"
+    url = f"{base}/vagas?palavra=jovem+aprendiz+{quote_plus(CIDADE)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for a in soup.find_all("a", href=True)[:MAX_RESULTS_PER_SITE]:
-            text = a.get_text(strip=True)
+        for a in soup.find_all("a", href=True):
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in text.lower():
-                vagas.append({"title": text, "link": normalize_link(base, href), "origin": "Empregos.com.br", "collected_at": now_iso()})
+            if looks_like_job_title(txt):
+                link = normalize_link(base, href)
+                vagas.append({"titulo": txt, "link": link, "origem": "Empregos.com.br"})
     except Exception as e:
-        log(f"⚠️ Erro Empregos.com.br: {e}")
+        print("Empregos.com.br erro:", e)
     return vagas
 
 def buscar_jooble():
     base = "https://br.jooble.org"
-    query = f"jovem aprendiz {CIDADE} {UF}"
-    url = f"{base}/search?q={quote_plus(query)}"
+    url = f"{base}/search?q=jovem+aprendiz+{quote_plus(CIDADE)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for a in soup.find_all("a", href=True)[:MAX_RESULTS_PER_SITE]:
-            text = a.get_text(strip=True)
+        for a in soup.find_all("a", href=True):
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in text.lower():
-                vagas.append({"title": text, "link": normalize_link(base, href), "origin": "Jooble", "collected_at": now_iso()})
+            if looks_like_job_title(txt):
+                link = normalize_link(base, href)
+                vagas.append({"titulo": txt, "link": link, "origem": "Jooble"})
     except Exception as e:
-        log(f"⚠️ Erro Jooble: {e}")
+        print("Jooble erro:", e)
     return vagas
 
 def buscar_catho():
     base = "https://www.catho.com.br"
-    query = f"jovem aprendiz {CIDADE}"
-    url = f"{base}/vagas?q={quote_plus(query)}"
+    url = f"{base}/vagas?q=jovem+aprendiz+{quote_plus(CIDADE)}"
     vagas = []
     try:
-        r = requests.get(url, headers=HEADERS, timeout=18)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
-        for a in soup.find_all("a", href=True)[:MAX_RESULTS_PER_SITE]:
-            text = a.get_text(strip=True)
+        for a in soup.find_all("a", href=True):
+            txt = a.get_text(strip=True)
             href = a["href"]
-            if looks_like_job_title(text) or CIDADE.lower() in text.lower():
-                vagas.append({"title": text, "link": normalize_link(base, href), "origin": "Catho", "collected_at": now_iso()})
+            if looks_like_job_title(txt):
+                link = normalize_link(base, href)
+                vagas.append({"titulo": txt, "link": link, "origem": "Catho"})
     except Exception as e:
-        log(f"⚠️ Erro Catho: {e}")
+        print("Catho erro:", e)
     return vagas
 
-SCRAPERS = [
-    buscar_trabalhabrasil,
-    buscar_indeed,
-    buscar_infojobs,
-    buscar_bne,
-    buscar_empregos_com_br,
-    buscar_jooble,
-    buscar_catho
-]
+# ===================== CONSOLIDAÇÃO =====================
 
-# ---------- Core ----------
-def pertence_a_jequitinhonha(vaga):
-    """Retorna True se a vaga pertence à cidade configurada."""
-    texto = f"{vaga.get('title','')} {vaga.get('link','')} {vaga.get('origin','')}".lower()
-    return CIDADE.lower() in texto and UF.lower() in texto
+def buscar_todas():
+    buscadores = [
+        buscar_trabalhabrasil,
+        buscar_indeed,
+        buscar_infojobs,
+        buscar_bne,
+        buscar_empregos_com_br,
+        buscar_jooble,
+        buscar_catho
+    ]
 
-def collect_once():
-    log("🚀 Coleta iniciada.")
-    existing = read_existing()
-    existing_links = set(item.get("link") for item in existing if item.get("link"))
-    found = []
-
-    for fn in SCRAPERS:
+    vagas = []
+    for f in buscadores:
         try:
-            items = fn()
-            for it in items:
-                link = it.get("link") or ""
-                # ⚙️ aplica filtro de cidade e duplicidade
-                if (
-                    link
-                    and pertence_a_jequitinhonha(it)
-                    and link not in existing_links
-                    and all(link != x["link"] for x in found)
-                ):
-                    found.append(it)
-            time.sleep(DELAY_BETWEEN)
+            achadas = f()
+            for v in achadas:
+                vagas.append(v)
         except Exception as e:
-            log(f"Erro no scraper {fn.__name__}: {e}")
-            traceback.print_exc()
+            print(f"Erro em {f.__name__}:", e)
+        time.sleep(1)
 
-    if found:
-        combined = found + existing
-        combined_sorted = sorted(combined, key=lambda x: x.get("collected_at", ""), reverse=True)
-        write_vagas(combined_sorted)
-        log(f"✅ {len(found)} novas vagas adicionadas e site atualizado!")
-    else:
-        log("ℹ️ Nenhuma nova vaga encontrada.")
+    # remover duplicadas por link
+    unico = {}
+    for v in vagas:
+        unico[v["link"]] = v
 
-    # --- git push opcional ---
-    try:
-        if GIT_PUSH_CFG.get("enabled"):
-            repo = GIT_PUSH_CFG.get("repo_path")
-            msg = GIT_PUSH_CFG.get("commit_message", "Atualiza vagas.json (automático)")
-            if repo and os.path.isdir(repo):
-                log(f"Executando git push em {repo}")
-                cmds = [
-                    ["git", "-C", repo, "add", "vagas.json"],
-                    ["git", "-C", repo, "commit", "-m", msg],
-                    ["git", "-C", repo, "push"]
-                ]
-                for c in cmds:
-                    subprocess.run(c, check=False)
-    except Exception as e:
-        log(f"Erro ao executar git push: {e}")
+    # aplicar filtro JEQUITINHONHA
+    filtradas = [v for v in unico.values() if filtrar_jequitinhonha(v)]
+
+    return filtradas
+
+# ===================== LOOP PRINCIPAL =====================
+
+def main():
+    seen = load_seen()
+
+    while True:
+        try:
+            todas = buscar_todas()
+
+            # salvar SEMPRE o vagas.json
+            try:
+                os.makedirs("./site", exist_ok=True)
+                with open(VAGAS_JSON, "w", encoding="utf-8") as f:
+                    json.dump(todas, f, ensure_ascii=False, indent=2)
+            except Exception as e:
+                print("Erro salvando vagas.json:", e)
+
+            # notificar apenas as novas
+            novas = [v for v in todas if v["link"] not in seen]
+
+            if novas:
+                msg = "🚨 *Novas vagas de Jovem Aprendiz em Jequitinhonha/MG:*\n\n"
+                for v in novas:
+                    msg += f"🔹 {v['titulo']}\n🔗 {v['link']}\n\n"
+                msg += "💼 Boa sorte!"
+                send_telegram(msg)
+
+                for v in novas:
+                    seen.add(v["link"])
+                save_seen(seen)
+
+            time.sleep(CHECK_INTERVAL_SECONDS)
+
+        except Exception as e:
+            print("Erro no loop principal:", e)
+            time.sleep(120)
 
 if __name__ == "__main__":
-    while True:
-        collect_once()
-        log("⏳ Aguardando 12 horas para a próxima coleta...")
-        time.sleep(12 * 60 * 60)  # 12 horas
-
+    main()
