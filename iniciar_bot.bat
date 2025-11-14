@@ -4,10 +4,13 @@ cd /d "C:\Users\Ana Rita\Desktop\Bot\vagas"
 echo === Atualizando repositorio ===
 git pull
 
-echo === Iniciando bot (sem travar o CMD) ===
-start /b "" python vaga_bot_pc.py
+echo === Iniciando monitor ===
+start "" python monitor_bot.py
 
-echo Aguardando o bot gerar o vagas.json...
+echo === Iniciando bot principal ===
+start "" python vaga_bot_pc.py
+
+echo === Aguardando o bot gerar o vagas.json... ===
 timeout /t 180 >nul
 
 echo === Enviando atualizacoes para o GitHub ===
