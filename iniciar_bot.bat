@@ -4,13 +4,16 @@ cd /d "C:\Users\Ana Rita\Desktop\Bot\vagas"
 echo === Atualizando repositorio ===
 git pull
 
-echo === Iniciando monitor ===
-start "" python monitor_bot.py
+echo === Encerrando instancias antigas do bot ===
+taskkill /IM python.exe /F >nul 2>&1
 
-echo === Iniciando bot principal ===
+echo === Iniciando vaga_bot_pc.py ===
 start "" python vaga_bot_pc.py
 
-echo === Aguardando o bot gerar o vagas.json... ===
+echo === Iniciando monitor_bot_pc.py ===
+start "" python monitor_bot.py
+
+echo Aguardando o bot gerar o vagas.json...
 timeout /t 180 >nul
 
 echo === Enviando atualizacoes para o GitHub ===
