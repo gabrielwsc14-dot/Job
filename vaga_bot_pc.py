@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
-# bot_vagas.py — versão otimizada e 100% compatível
+# bot_vagas.py  versao otimizada e 100% compativel
+
+import os
+import sys
+
+# ==========================================================
+# 🔒 BLOQUEIO: só pode iniciar se vier pelo .BAT oficial
+# ==========================================================
+CHAVE_INICIO = "SOMENTE_PELO_BAT"
+
+if CHAVE_INICIO not in sys.argv:
+    print("⚠️ ERRO: Este bot só pode ser iniciado pelo iniciador oficial (.BAT)")
+    exit()
+
+# ==========================================================
+# INÍCIO DO SEU BOT NORMAL
+# ==========================================================
+
+os.makedirs("site", exist_ok=True)
 
 import requests
 from bs4 import BeautifulSoup
 import time
 import json
-import os
 from urllib.parse import urljoin, quote_plus
 from datetime import datetime
 from requests.adapters import HTTPAdapter, Retry
@@ -45,8 +62,6 @@ def nova_sessao():
     return s
 
 session = nova_sessao()
-
-# ===================== UTILIDADES =====================
 
 def iso_now():
     return datetime.now().isoformat(timespec="seconds")
@@ -91,13 +106,10 @@ def looks_like_job_title(text):
     t = text.lower()
     return any(k in t for k in KEYWORDS)
 
-# ===================== FILTRO JEQUITINHONHA =====================
-
 def filtrar_jequitinhonha(v):
     titulo = v["title"].lower()
     link = v["link"].lower()
 
-    # Jequitinhonha obrigatório
     if "jequitinhonha" not in titulo and "jequitinhonha" not in link:
         return False
 
@@ -109,13 +121,10 @@ def filtrar_jequitinhonha(v):
     if any(c in titulo or c in link for c in cidades_proibidas):
         return False
 
-    # deve conter palavras-chave
     if not any(k in titulo for k in KEYWORDS):
         return False
 
     return True
-
-# ===================== MODELO DE VAGA =====================
 
 def wrap(title, link, origin):
     return {
@@ -125,8 +134,6 @@ def wrap(title, link, origin):
         "collected_at": iso_now()
     }
 
-# ===================== MODELO DE BUSCA SEGURO =====================
-
 def get_soup(url):
     try:
         r = session.get(url, headers=HEADERS, timeout=20)
@@ -134,8 +141,6 @@ def get_soup(url):
     except Exception as e:
         print(f"[ERRO] Falha ao acessar {url} →", e)
         return None
-
-# ===================== 7 PARSERS (OTIMIZADOS) =====================
 
 def buscar_trabalhabrasil():
     base = "https://www.trabalhabrasil.com.br"
@@ -152,7 +157,6 @@ def buscar_trabalhabrasil():
             link = normalize_link(base, a["href"])
             vagas.append(wrap(txt, link, "TrabalhaBrasil"))
     return vagas
-
 
 def buscar_indeed():
     base = "https://br.indeed.com"
@@ -172,7 +176,6 @@ def buscar_indeed():
         vagas.append(wrap(titulo, full, "Indeed"))
     return vagas
 
-
 def buscar_infojobs():
     base = "https://www.infojobs.com.br"
     url = f"{base}/empregos.aspx?Palabra=jovem+aprendiz&Location={quote_plus(CIDADE)}"
@@ -188,7 +191,6 @@ def buscar_infojobs():
             link = normalize_link(base, a["href"])
             vagas.append(wrap(txt, link, "InfoJobs"))
     return vagas
-
 
 def buscar_bne():
     base = "https://www.bne.com.br"
@@ -206,7 +208,6 @@ def buscar_bne():
             vagas.append(wrap(txt, link, "BNE"))
     return vagas
 
-
 def buscar_empregos_com_br():
     base = "https://www.empregos.com.br"
     url = f"{base}/vagas?palavra=jovem+aprendiz+{quote_plus(CIDADE)}"
@@ -222,7 +223,6 @@ def buscar_empregos_com_br():
             link = normalize_link(base, a["href"])
             vagas.append(wrap(txt, link, "Empregos.com.br"))
     return vagas
-
 
 def buscar_jooble():
     base = "https://br.jooble.org"
@@ -240,7 +240,6 @@ def buscar_jooble():
             vagas.append(wrap(txt, link, "Jooble"))
     return vagas
 
-
 def buscar_catho():
     base = "https://www.catho.com.br"
     url = f"{base}/vagas?q=jovem+aprendiz+{quote_plus(CIDADE)}"
@@ -256,8 +255,6 @@ def buscar_catho():
             link = normalize_link(base, a["href"])
             vagas.append(wrap(txt, link, "Catho"))
     return vagas
-
-# ===================== CONSOLIDAÇÃO =====================
 
 def buscar_todas():
     fontes = [
@@ -280,13 +277,8 @@ def buscar_todas():
             print(f"[ERRO] Fonte {f.__name__} falhou →", e)
         time.sleep(0.7)
 
-    # Remover duplicadas (link)
     unico = {v["link"]: v for v in todas}
-
-    # Filtrar Jequitinhonha
     return [v for v in unico.values() if filtrar_jequitinhonha(v)]
-
-# ===================== LOOP PRINCIPAL =====================
 
 def main():
     seen = load_seen()
@@ -295,7 +287,6 @@ def main():
         try:
             vagas = buscar_todas()
 
-            # salvar JSON para o site (idêntico ao antigo)
             try:
                 os.makedirs("./site", exist_ok=True)
                 with open(VAGAS_JSON, "w", encoding="utf-8") as f:

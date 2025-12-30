@@ -1,0 +1,326 @@
+[14/11/2025 15:40:34] ====================================================
+[14/11/2025 15:40:34] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[14/11/2025 15:40:34] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[14/11/2025 15:40:34] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 15:40:36] [WARN] monitor_bot.py não está rodando. Iniciando…
+[14/11/2025 15:40:36] [OK] Iniciado: monitor_bot.py
+[14/11/2025 15:40:38] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:40:38] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:40:38] [OK] Ciclo completo.
+[14/11/2025 15:43:38] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:43:38] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:43:38] [OK] Ciclo completo.
+[14/11/2025 15:46:38] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[14/11/2025 15:46:38] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 15:46:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:46:40] [OK] Ciclo completo.
+[14/11/2025 15:49:40] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 3252)
+[14/11/2025 15:49:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:49:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:49:40] [OK] Ciclo completo.
+[14/11/2025 15:52:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:52:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:52:40] [OK] Ciclo completo.
+[14/11/2025 15:55:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:55:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:55:40] [OK] Ciclo completo.
+[14/11/2025 15:58:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 15:58:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 15:58:40] [OK] Ciclo completo.
+[14/11/2025 16:01:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:01:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:01:40] [OK] Ciclo completo.
+[14/11/2025 16:04:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:04:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:04:40] [OK] Ciclo completo.
+[14/11/2025 16:07:40] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:07:40] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:07:40] [OK] Ciclo completo.
+[14/11/2025 16:13:44] ====================================================
+[14/11/2025 16:13:44] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[14/11/2025 16:13:44] ====================================================
+[14/11/2025 16:13:44] ====================================================
+[14/11/2025 16:13:44] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[14/11/2025 16:13:44] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 16:13:44] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 16:13:46] [WARN] monitor_bot.py não está rodando. Iniciando…
+[14/11/2025 16:13:46] [OK] Iniciado: monitor_bot.py
+[14/11/2025 16:13:46] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:13:46] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 3576)
+[14/11/2025 16:13:46] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:13:46] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:13:46] [OK] Ciclo completo.
+[14/11/2025 16:13:48] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:13:48] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:13:48] [OK] Ciclo completo.
+[14/11/2025 16:20:37] ====================================================
+[14/11/2025 16:20:37] ====================================================
+[14/11/2025 16:20:37] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[14/11/2025 16:20:37] ====================================================
+[14/11/2025 16:20:37] ====================================================
+[14/11/2025 16:20:37] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[14/11/2025 16:20:37] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[14/11/2025 16:20:37] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 16:20:37] [OK] Iniciado: vaga_bot_pc.py
+[14/11/2025 16:20:39] [WARN] monitor_bot.py não está rodando. Iniciando…
+[14/11/2025 16:20:39] [OK] Iniciado: monitor_bot.py
+[14/11/2025 16:20:39] [WARN] monitor_bot.py não está rodando. Iniciando…
+[14/11/2025 16:20:39] [OK] Iniciado: monitor_bot.py
+[14/11/2025 16:20:41] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 5040)
+[14/11/2025 16:20:41] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:20:41] [OK] Processo duplicado removido: monitor_bot.py (PID 5136)
+[14/11/2025 16:20:41] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:20:41] [OK] Ciclo completo.
+[14/11/2025 16:20:41] [OK] vaga_bot_pc.py está rodando corretamente.
+[14/11/2025 16:20:41] [OK] monitor_bot.py está rodando corretamente.
+[14/11/2025 16:20:41] [OK] Ciclo completo.
+[16/11/2025 10:25:12] ====================================================
+[16/11/2025 10:25:12] ====================================================
+[16/11/2025 10:25:12] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[16/11/2025 10:25:12] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[16/11/2025 10:25:12] ====================================================
+[16/11/2025 10:25:12] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[16/11/2025 10:25:12] [OK] Iniciado: vaga_bot_pc.py
+[16/11/2025 10:25:12] [OK] Iniciado: vaga_bot_pc.py
+[16/11/2025 10:25:14] [WARN] monitor_bot.py não está rodando. Iniciando…
+[16/11/2025 10:25:14] [OK] Iniciado: monitor_bot.py
+[16/11/2025 10:25:14] [OK] monitor_bot.py está rodando corretamente.
+[16/11/2025 10:25:14] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 4872)
+[16/11/2025 10:25:14] [OK] vaga_bot_pc.py está rodando corretamente.
+[16/11/2025 10:25:14] [OK] monitor_bot.py está rodando corretamente.
+[16/11/2025 10:25:14] [OK] Ciclo completo.
+[16/11/2025 10:25:16] [OK] vaga_bot_pc.py está rodando corretamente.
+[16/11/2025 10:25:16] [OK] monitor_bot.py está rodando corretamente.
+[16/11/2025 10:25:16] [OK] Ciclo completo.
+[17/11/2025 20:50:11] ====================================================
+[17/11/2025 20:50:11] ====================================================
+[17/11/2025 20:50:11] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 20:50:11] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 20:50:11] ====================================================
+[17/11/2025 20:50:11] ====================================================
+[17/11/2025 20:50:11] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 20:50:11] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 20:50:11] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 20:50:13] [WARN] monitor_bot.py não está rodando. Iniciando…
+[17/11/2025 20:50:13] [OK] Iniciado: monitor_bot.py
+[17/11/2025 20:50:13] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:50:13] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 5940)
+[17/11/2025 20:50:13] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:50:13] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:50:13] [OK] Ciclo completo.
+[17/11/2025 20:50:15] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:50:15] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:50:15] [OK] Ciclo completo.
+[17/11/2025 20:53:23] ====================================================
+[17/11/2025 20:53:24] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 20:53:24] ====================================================
+[17/11/2025 20:53:24] ====================================================
+[17/11/2025 20:53:24] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 20:53:24] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 20:53:24] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 20:53:26] [WARN] monitor_bot.py não está rodando. Iniciando…
+[17/11/2025 20:53:26] [OK] Iniciado: monitor_bot.py
+[17/11/2025 20:53:26] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:53:26] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 5868)
+[17/11/2025 20:53:26] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:53:26] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:53:26] [OK] Ciclo completo.
+[17/11/2025 20:53:28] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:53:28] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:53:28] [OK] Ciclo completo.
+[17/11/2025 20:56:26] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:56:26] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:56:26] [OK] Ciclo completo.
+[17/11/2025 20:56:28] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:56:28] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:56:28] [OK] Ciclo completo.
+[17/11/2025 20:59:23] ====================================================
+[17/11/2025 20:59:23] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 20:59:23] ====================================================
+[17/11/2025 20:59:23] ====================================================
+[17/11/2025 20:59:23] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 20:59:23] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 20:59:23] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 20:59:25] [WARN] monitor_bot.py não está rodando. Iniciando…
+[17/11/2025 20:59:25] [WARN] monitor_bot.py não está rodando. Iniciando…
+[17/11/2025 20:59:25] [OK] Iniciado: monitor_bot.py
+[17/11/2025 20:59:25] [OK] Iniciado: monitor_bot.py
+[17/11/2025 20:59:27] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 4076)
+[17/11/2025 20:59:27] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:59:27] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 4076)
+[17/11/2025 20:59:27] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 20:59:27] [OK] Processo duplicado removido: monitor_bot.py (PID 3968)
+[17/11/2025 20:59:27] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:59:27] [OK] Ciclo completo.
+[17/11/2025 20:59:27] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 20:59:27] [OK] Ciclo completo.
+[17/11/2025 21:02:27] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:02:27] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:02:27] [OK] Ciclo completo.
+[17/11/2025 21:02:27] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:02:27] [OK] Ciclo completo.
+[17/11/2025 21:29:21] ====================================================
+[17/11/2025 21:29:21] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 21:29:21] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[17/11/2025 21:29:21] ====================================================
+[17/11/2025 21:29:21] ====================================================
+[17/11/2025 21:29:21] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 21:29:21] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[17/11/2025 21:29:21] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 21:29:21] [OK] Iniciado: vaga_bot_pc.py
+[17/11/2025 21:29:23] [WARN] monitor_bot.py não está rodando. Iniciando…
+[17/11/2025 21:29:23] [OK] Iniciado: monitor_bot.py
+[17/11/2025 21:29:23] [OK] Iniciado: monitor_bot.py
+[17/11/2025 21:29:25] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 2584)
+[17/11/2025 21:29:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:29:25] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 2584)
+[17/11/2025 21:29:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:29:25] [OK] Processo duplicado removido: monitor_bot.py (PID 2112)
+[17/11/2025 21:29:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:29:25] [OK] Ciclo completo.
+[17/11/2025 21:29:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:29:25] [OK] Ciclo completo.
+[17/11/2025 21:32:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:32:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:32:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:32:25] [OK] Ciclo completo.
+[17/11/2025 21:32:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:32:25] [OK] Ciclo completo.
+[17/11/2025 21:35:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:35:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:35:25] [OK] Ciclo completo.
+[17/11/2025 21:35:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:35:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:35:25] [OK] Ciclo completo.
+[17/11/2025 21:38:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:38:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:38:25] [OK] Ciclo completo.
+[17/11/2025 21:38:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:38:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:38:25] [OK] Ciclo completo.
+[17/11/2025 21:41:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:41:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:41:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:41:25] [OK] Ciclo completo.
+[17/11/2025 21:41:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:41:25] [OK] Ciclo completo.
+[17/11/2025 21:44:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:44:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:44:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:44:25] [OK] Ciclo completo.
+[17/11/2025 21:44:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:44:25] [OK] Ciclo completo.
+[17/11/2025 21:47:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:47:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:47:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:47:25] [OK] Ciclo completo.
+[17/11/2025 21:47:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:47:25] [OK] Ciclo completo.
+[17/11/2025 21:50:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:50:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:50:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:50:25] [OK] Ciclo completo.
+[17/11/2025 21:50:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:50:25] [OK] Ciclo completo.
+[17/11/2025 21:53:25] [OK] vaga_bot_pc.py está rodando corretamente.
+[17/11/2025 21:53:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:53:25] [OK] Ciclo completo.
+[17/11/2025 21:53:25] [OK] monitor_bot.py está rodando corretamente.
+[17/11/2025 21:53:25] [OK] Ciclo completo.
+[19/11/2025 11:17:09] ====================================================
+[19/11/2025 11:17:09] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[19/11/2025 11:17:09] ====================================================
+[19/11/2025 11:17:09] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[19/11/2025 11:17:09] [OK] Iniciado: vaga_bot_pc.py
+[19/11/2025 11:17:11] [WARN] monitor_bot.py não está rodando. Iniciando…
+                                                                                                                                                                                                                                               [19/11/2025 11:20:02] ====================================================
+[19/11/2025 11:20:03] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[19/11/2025 11:20:03] ====================================================
+[19/11/2025 11:20:03] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[19/11/2025 11:20:03] [OK] Iniciado: vaga_bot_pc.py
+[19/11/2025 11:20:05] [WARN] monitor_bot.py não está rodando. Iniciando…
+[19/11/2025 11:20:05] [OK] Iniciado: monitor_bot.py
+[19/11/2025 11:20:07] [OK] vaga_bot_pc.py está rodando corretamente.
+[19/11/2025 11:20:07] [OK] monitor_bot.py está rodando corretamente.
+[19/11/2025 11:20:07] [OK] Ciclo completo.
+[19/11/2025 17:50:25] ====================================================
+[19/11/2025 17:50:26] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[19/11/2025 17:50:26] ====================================================
+[19/11/2025 17:50:26] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[19/11/2025 17:50:26] [OK] Iniciado: vaga_bot_pc.py
+[19/11/2025 17:50:28] [WARN] monitor_bot.py não está rodando. Iniciando…
+[19/11/2025 17:50:28] [OK] Iniciado: monitor_bot.py
+[19/11/2025 19:55:55] ====================================================
+[19/11/2025 19:55:55] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[19/11/2025 19:55:55] ====================================================
+[19/11/2025 19:55:55] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[19/11/2025 19:55:55] [OK] Iniciado: vaga_bot_pc.py
+[19/11/2025 19:55:57] [WARN] monitor_bot.py não está rodando. Iniciando…
+[19/11/2025 19:55:57] [OK] Iniciado: monitor_bot.py
+[19/11/2025 19:55:59] [OK] vaga_bot_pc.py está rodando corretamente.
+[19/11/2025 19:55:59] [OK] monitor_bot.py está rodando corretamente.
+[19/11/2025 19:55:59] [OK] Ciclo completo.
+[20/11/2025 10:53:47] ====================================================
+[20/11/2025 10:53:47] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 10:53:47] ====================================================
+[20/11/2025 10:53:47] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[20/11/2025 10:53:47] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 10:53:47] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 10:53:49] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 10:53:49] [OK] Iniciado: monitor_bot.py
+[20/11/2025 10:53:51] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 10:53:51] [OK] Processo duplicado removido: monitor_bot.py (PID 3164)
+[20/11/2025 10:53:51] [OK] monitor_bot.py está rodando corretamente.
+[20/11/2025 10:53:51] [OK] Ciclo completo.
+[20/11/2025 11:42:42] ====================================================
+[20/11/2025 11:42:42] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 11:42:42] ====================================================
+[20/11/2025 11:42:42] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 11:42:42] ====================================================
+[20/11/2025 11:42:42] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[20/11/2025 11:42:42] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 11:42:42] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 11:42:42] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 11:42:42] [OK] Iniciado: monitor_bot.py
+[20/11/2025 11:42:44] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 11:42:44] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 11:42:44] [OK] Iniciado: monitor_bot.py
+[20/11/2025 11:56:29] ====================================================
+[20/11/2025 11:56:29] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 11:56:29] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 11:56:29] ====================================================
+[20/11/2025 11:56:29] ====================================================
+[20/11/2025 11:56:29] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[20/11/2025 11:56:29] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 11:56:31] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 11:56:31] [OK] Iniciado: monitor_bot.py
+[20/11/2025 11:56:31] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 11:56:31] [OK] Iniciado: monitor_bot.py
+[20/11/2025 11:56:33] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 2260)
+[20/11/2025 11:56:33] [OK] Processo duplicado removido: vaga_bot_pc.py (PID 2260)
+[20/11/2025 11:56:33] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 11:56:33] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 11:56:33] [OK] Processo duplicado removido: monitor_bot.py (PID 2320)
+[20/11/2025 11:56:33] [OK] monitor_bot.py está rodando corretamente.
+[20/11/2025 11:56:33] [OK] Ciclo completo.
+[20/11/2025 11:56:33] [OK] Processo duplicado removido: monitor_bot.py (PID 2320)
+[20/11/2025 11:56:33] [OK] monitor_bot.py está rodando corretamente.
+[20/11/2025 11:56:33] [OK] Ciclo completo.
+[20/11/2025 12:12:56] ====================================================
+[20/11/2025 12:12:56] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 12:12:56] ====================================================
+[20/11/2025 12:12:56] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[20/11/2025 12:12:56] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 12:12:58] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 12:12:58] [OK] Iniciado: monitor_bot.py
+[20/11/2025 12:17:13] ====================================================
+[20/11/2025 12:17:13] INICIAR_BOT ULTRA-ROBUSTO INICIADO
+[20/11/2025 12:17:13] ====================================================
+[20/11/2025 12:17:13] [WARN] vaga_bot_pc.py não está rodando. Iniciando…
+[20/11/2025 12:17:13] [OK] Iniciado: vaga_bot_pc.py
+[20/11/2025 12:17:15] [WARN] monitor_bot.py não está rodando. Iniciando…
+[20/11/2025 12:17:15] [OK] Iniciado: monitor_bot.py
+[20/11/2025 12:17:17] [OK] vaga_bot_pc.py está rodando corretamente.
+[20/11/2025 12:17:17] [OK] Processo duplicado removido: monitor_bot.py (PID 3252)
+[20/11/2025 12:17:17] [OK] monitor_bot.py está rodando corretamente.
+[20/11/2025 12:17:17] [OK] Ciclo completo.
