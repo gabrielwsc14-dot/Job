@@ -5,15 +5,6 @@ import os
 import sys
 
 # ==========================================================
-# 🔒 BLOQUEIO: só pode iniciar se vier pelo .BAT oficial
-# ==========================================================
-CHAVE_INICIO = "SOMENTE_PELO_BAT"
-
-if CHAVE_INICIO not in sys.argv:
-    print("⚠️ ERRO: Este bot só pode ser iniciado pelo iniciador oficial (.BAT)")
-    exit()
-
-# ==========================================================
 # INÍCIO DO SEU BOT NORMAL
 # ==========================================================
 
@@ -28,8 +19,8 @@ from datetime import datetime
 from requests.adapters import HTTPAdapter, Retry
 
 # ===================== CONFIG =====================
-TOKEN = ""      # Telegram
-CHAT_ID = ""    # Telegram
+TOKEN = "8271959691:AAE4EL3u8cdhRyz5oikUpKTYExAyiw_2SoU"      # Telegram
+CHAT_ID = "8271959691"    # Telegram
 
 CHECK_INTERVAL_SECONDS = 3 * 60 * 60
 SEEN_FILE = "seen_links.json"
